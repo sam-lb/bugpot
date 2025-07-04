@@ -1,9 +1,9 @@
-import Question from "./Question.jsx"
+import Display from "./Display.jsx"
 
 function App() {
   return (
     <>
-      <Question/>
+      <Display/>
     </>
   );
 }
