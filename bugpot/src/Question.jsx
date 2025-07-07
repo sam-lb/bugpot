@@ -1,36 +1,34 @@
 
+function Question({ question, questionID, selectedAnswer, onAnswerChange }) {
+    // We'll use a consistent set of option values and labels
+    const options = [
+        { value: 'strongly_disagree', label: 'Strongly Disagree' },
+        { value: 'disagree', label: 'Disagree' },
+        { value: 'neutral', label: 'Neutral' },
+        { value: 'agree', label: 'Agree' },
+        { value: 'strongly_agree', label: 'Strongly Agree' },
+    ];
 
-function Question() {
     return (
-        <>
-            <div className="question-container">
-                <div className="statement">
-                    <p>here is a statement</p>
-                </div>
-                <div className="answer-choice-container">
-                    <div className="answer-option">
-                        <label>Strongly Disagree</label>
-                        <input type="radio" name="answer" value="strongly_disagree" />
-                    </div>
-                    <div className="answer-option">
-                        <label>Disagree</label>
-                        <input type="radio" name="answer" value="disagree" />
-                    </div>
-                    <div className="answer-option">
-                        <label>Neutral</label>
-                        <input type="radio" name="answer" value="neutral" />
-                    </div>
-                    <div className="answer-option">
-                        <label>Agree</label>
-                        <input type="radio" name="answer" value="agree" />
-                    </div>
-                    <div className="answer-option">
-                        <label>Strongly Agree</label>
-                        <input type="radio" name="answer" value="strongly_agree" />
-                    </div>
-                </div>
+        <div className="question-container">
+            <div className="statement">
+                <p>{question}</p>
             </div>
-        </>
+            <div className="answer-choice-container">
+                {options.map(option => (
+                    <div className="answer-option" key={option.value}>
+                        <label>{option.label}</label>
+                        <input
+                            type="radio"
+                            name={`answer-${questionID}`}
+                            value={option.value}
+                            checked={selectedAnswer === option.value}
+                            onChange={() => onAnswerChange(questionID, option.value)}
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 }
 
